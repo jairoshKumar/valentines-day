@@ -1,34 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useMemo, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isAccepted, setIsAccepted] = useState(false)
+  const [showHint, setShowHint] = useState(false)
+  const hearts = useMemo(() => Array.from({ length: 20 }, (_, i) => i), [])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <main className="valentine-page">
+      <div className="floating-hearts" aria-hidden="true">
+        {hearts.map((heart) => (
+          <span
+            key={heart}
+            className="heart"
+            style={{
+              '--left': `${Math.random() * 100}%`,
+              '--delay': `${Math.random() * 5}s`,
+              '--duration': `${8 + Math.random() * 5}s`,
+              '--size': `${14 + Math.random() * 24}px`,
+            }}
+          >
+            ❤
+          </span>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+
+      <section className="invite-card">
+        <p className="eyebrow">For the most beautiful part of my world</p>
+        <h1>Will You Be My Valentine?</h1>
+        <p className="message">
+          Every day with you feels warmer, softer, and brighter. I want this
+          Valentine&apos;s Day to be ours.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+        {!isAccepted ? (
+          <div className="actions">
+            <button className="btn yes" onClick={() => setIsAccepted(true)}>
+              Yes, absolutely
+            </button>
+            <button className="btn ghost" onClick={() => setShowHint(true)}>
+              Let me think
+            </button>
+          </div>
+        ) : (
+          <div className="accepted" role="status">
+            <p>You just made me the happiest person alive.</p>
+            <p>It&apos;s a date. February 14 is ours. ❤</p>
+          </div>
+        )}
+
+        {showHint && !isAccepted && (
+          <p className="hint">No pressure. I&apos;ll keep choosing you, always.</p>
+        )}
+
+        <p className="signature">Forever yours</p>
+      </section>
+    </main>
   )
 }
 
