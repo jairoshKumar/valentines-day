@@ -14,19 +14,130 @@
     linear-gradient(160deg, #fff6f9 0%, #ffe4ee 45%, #ffd6e5 100%);
 }
 
+.valentine-page.burn-mode {
+  background:
+    radial-gradient(circle at 20% 12%, #ffd49d 0%, transparent 35%),
+    radial-gradient(circle at 82% 18%, #ffb165 0%, transparent 34%),
+    radial-gradient(circle at 50% 80%, #ff7e2f 0%, transparent 45%),
+    linear-gradient(175deg, #fff0d8 0%, #ffc071 42%, #f06f22 100%);
+}
+
+.valentine-page.burn-mode .invite-card {
+  background: rgba(255, 239, 214, 0.82);
+  border: 1px solid rgba(255, 220, 164, 0.9);
+  box-shadow: 0 24px 80px rgba(120, 36, 5, 0.3);
+}
+
+.valentine-page.burn-mode .eyebrow,
+.valentine-page.burn-mode .message,
+.valentine-page.burn-mode .hint {
+  color: #873510;
+}
+
+.valentine-page.burn-mode h1,
+.valentine-page.burn-mode .signature {
+  color: #8f1d06;
+  text-shadow: 0 8px 24px rgba(132, 27, 0, 0.24);
+}
+
+.valentine-page.burn-mode .btn.yes {
+  background: linear-gradient(135deg, #d54a0f, #f07d1f);
+  box-shadow: 0 10px 24px rgba(179, 65, 8, 0.38);
+}
+
+.valentine-page.burn-mode .btn.ghost {
+  color: #7b2d10;
+  background: #ffd7a6;
+}
+
+.fire-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 170px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.flame {
+  width: clamp(26px, 3.2vw, 56px);
+  height: 116px;
+  border-radius: 55% 55% 42% 42%;
+  clip-path: polygon(50% 0%, 60% 11%, 68% 24%, 77% 42%, 70% 60%, 86% 74%, 72% 90%, 50% 100%, 28% 90%, 14% 74%, 30% 60%, 23% 42%, 32% 24%, 40% 11%);
+  background:
+    radial-gradient(circle at 50% 78%, #fffbd7 0%, #ffe98e 18%, #ffbf45 38%, #ff7f1f 62%, #d73b08 100%);
+  filter: drop-shadow(0 0 12px rgba(255, 109, 0, 0.65));
+  transform-origin: 50% 100%;
+  opacity: 0.95;
+  animation: flame-flicker var(--flame-duration) ease-in-out var(--flame-delay) infinite;
+}
+
 .floating-hearts {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.heart {
+.photo-heart {
   position: absolute;
   left: var(--left);
   bottom: -40px;
-  font-size: var(--size);
-  color: rgba(214, 31, 95, 0.25);
+  width: var(--size);
+  aspect-ratio: 1 / 1;
+  background-image: url('/valentine-photo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  filter: drop-shadow(0 8px 16px rgba(188, 35, 90, 0.35));
+  clip-path: polygon(50% 92%, 19% 63%, 7% 39%, 10% 20%, 24% 9%, 37% 12%, 50% 25%, 63% 12%, 76% 9%, 90% 20%, 93% 39%, 81% 63%);
   animation: rise var(--duration) linear var(--delay) infinite;
+}
+
+.sad-float {
+  position: absolute;
+  width: min(56vw, 500px);
+  aspect-ratio: 1 / 1;
+  left: var(--burst-left, 50%);
+  bottom: -520px;
+  transform: translateX(-50%);
+  background-image: var(--sad-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  clip-path: polygon(50% 92%, 19% 63%, 7% 39%, 10% 20%, 24% 9%, 37% 12%, 50% 25%, 63% 12%, 76% 9%, 90% 20%, 93% 39%, 81% 63%);
+  filter: drop-shadow(0 18px 32px rgba(146, 23, 63, 0.46));
+  pointer-events: none;
+  z-index: 6;
+  animation: sad-rise 3.4s ease-out forwards;
+}
+
+.pinned-sad-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.pinned-sad-heart {
+  position: absolute;
+  width: min(30vw, 400px);
+  min-width: 120px;
+  aspect-ratio: 1 / 1;
+  left: var(--side-left);
+  right: var(--side-right);
+  top: var(--top);
+  background-image: var(--sad-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  clip-path: polygon(50% 92%, 19% 63%, 7% 39%, 10% 20%, 24% 9%, 37% 12%, 50% 25%, 63% 12%, 76% 9%, 90% 20%, 93% 39%, 81% 63%);
+  filter: drop-shadow(0 12px 24px rgba(146, 23, 63, 0.42));
+  opacity: 0.95;
+  animation: pin-in 260ms ease forwards;
 }
 
 .invite-card {
@@ -39,6 +150,24 @@
   border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 24px 80px rgba(129, 19, 62, 0.22);
   backdrop-filter: blur(6px);
+}
+
+.card-chaos {
+  position: absolute;
+  bottom: -16px;
+  width: clamp(88px, 11vw, 150px);
+  pointer-events: none;
+  z-index: 4;
+  filter: drop-shadow(0 10px 14px rgba(63, 17, 0, 0.35));
+  animation: chaos-pop 240ms ease;
+}
+
+.card-chaos.left {
+  left: -12px;
+}
+
+.card-chaos.right {
+  right: -12px;
 }
 
 .eyebrow {
@@ -98,6 +227,15 @@ h1 {
 .btn.ghost {
   color: #8a2a53;
   background: #ffe9f1;
+  max-width: min(100%, 420px);
+  white-space: normal;
+}
+
+.btn:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .accepted {
@@ -126,6 +264,42 @@ h1 {
   color: #8d2f59;
 }
 
+.win-hearts-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 11;
+  overflow: hidden;
+}
+
+.win-heart {
+  position: absolute;
+  left: var(--win-left);
+  bottom: -26px;
+  font-size: var(--win-size);
+  color: rgba(224, 30, 98, 0.9);
+  text-shadow: 0 4px 12px rgba(180, 18, 71, 0.32);
+  animation: win-rise var(--win-duration) ease-out var(--win-delay) forwards;
+}
+
+.win-side {
+  position: absolute;
+  bottom: 18px;
+  width: clamp(108px, 18vw, 240px);
+  z-index: 12;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 24px rgba(122, 21, 62, 0.24));
+  animation: win-side-in 380ms ease;
+}
+
+.win-side.left {
+  left: 14px;
+}
+
+.win-side.right {
+  right: 14px;
+}
+
 @keyframes rise {
   0% {
     transform: translateY(0) scale(0.9);
@@ -142,6 +316,34 @@ h1 {
   }
 }
 
+@keyframes win-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.88);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-120vh) scale(1.2);
+  }
+}
+
+@keyframes win-side-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes pop-in {
   from {
     opacity: 0;
@@ -154,6 +356,70 @@ h1 {
   }
 }
 
+@keyframes sad-rise {
+  0% {
+    opacity: 0;
+    bottom: -520px;
+    transform: translateX(-50%) scale(0.6);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    bottom: 46%;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+@keyframes pin-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+}
+
+@keyframes flame-flicker {
+  0% {
+    transform: translateY(0) scale(0.86) rotate(-2deg);
+  }
+
+  25% {
+    transform: translateY(-14px) scale(1.03) rotate(2deg);
+  }
+
+  50% {
+    transform: translateY(-24px) scale(0.9) rotate(-3deg);
+  }
+
+  75% {
+    transform: translateY(-12px) scale(1.06) rotate(2deg);
+  }
+
+  100% {
+    transform: translateY(0) scale(0.86) rotate(-2deg);
+  }
+}
+
+@keyframes chaos-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (max-width: 560px) {
   .invite-card {
     padding: 2rem 1.2rem;
@@ -162,5 +428,40 @@ h1 {
 
   .signature {
     font-size: 1.8rem;
+  }
+
+  .sad-float {
+    width: min(84vw, 400px);
+  }
+
+  .pinned-sad-heart {
+    width: min(29vw, 140px);
+    min-width: 95px;
+  }
+
+  .card-chaos {
+    width: clamp(70px, 20vw, 108px);
+    bottom: -10px;
+  }
+
+  .card-chaos.left {
+    left: -6px;
+  }
+
+  .card-chaos.right {
+    right: -6px;
+  }
+
+  .win-side {
+    width: clamp(82px, 23vw, 140px);
+    bottom: 8px;
+  }
+
+  .win-side.left {
+    left: 6px;
+  }
+
+  .win-side.right {
+    right: 6px;
   }
 }
