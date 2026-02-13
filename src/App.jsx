@@ -203,10 +203,9 @@ function App() {
         )}
 
         <p className="eyebrow">For the most beautiful part of my world</p>
-        <h1>Will You Be My Valentine?</h1>
+        <h1>Will You Be My Valentine Bebe?</h1>
         <p className="message">
-          Every day with you feels warmer, softer, and brighter. I want this
-          Valentine&apos;s Day to be ours.
+          Darti hai kya? Bol bol, banegee meri Valentine?
         </p>
 
         {!isAccepted ? (
@@ -219,21 +218,17 @@ function App() {
               onClick={handleNoClick}
               disabled={isNoLocked}
             >
-              {currentSad ? currentSad.message : "Let me think"}
+              {currentSad ? currentSad.message : "Let me think about it..."}
             </button>
           </div>
         ) : (
           <div className="accepted" role="status">
-            <p>You just made me the happiest person alive.</p>
+            <p>You just made me the biggest bubu alive.</p>
             <p>It&apos;s a date. February 14 is ours. ❤</p>
           </div>
         )}
 
-        {currentSad && !isAccepted && (
-          <p className="hint">{currentSad.message}</p>
-        )}
-
-        <p className="signature">Forever yours</p>
+        <p className="signature">Forever yours, Big Bubu 😎</p>
       </section>
     </main>
   );
